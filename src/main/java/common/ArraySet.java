@@ -104,4 +104,10 @@ public class ArraySet<E> implements Set<E> {
 	public E remove(int index) {
 		return list.remove(index);
 	}
+
+	@Override
+	public String toString() {
+		return list.toString();
+	}
+	
 }

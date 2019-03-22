@@ -35,22 +35,21 @@ public class PrefixTree {
 	}
 	
 	private void add(ArraySet<PrefixTree> cs, char[] chars, int pointer, String notes) {
-		if(pointer == (chars.length - 1)) {
-			this.putWord(chars, notes);
-		} else {
+		if(cs != null && cs.size() > 0) {
 			boolean flag = true;
-			if(cs != null && cs.size() > 0) {
-				for(PrefixTree t : cs) {
-					if(chars[pointer++] == t.charactor) {
-						t.add(t.children, chars, pointer, notes);
-						flag = false;
-						break;
-					}
+			char c = chars[pointer++];
+			for(PrefixTree t : cs) {
+				if(c == t.charactor) {
+					t.add(t.children, chars, pointer, notes);
+					flag = false;
+					break;
 				}
 			}
-			if(flag) {
+			if(!flag) {
 				this.addIfNotExisits(this, chars, pointer, notes);
 			}
+		} else {
+			this.addIfNotExisits(this, chars, pointer++, notes);
 		}
 	}
 	
@@ -63,12 +62,6 @@ public class PrefixTree {
 		}
 	}
 	
-	/**
-	 * 创建子节点并添加单词
-	 * @param t
-	 * @param chars
-	 * @param pointer
-	 */
 	private void makeAndAddWord(PrefixTree t, char[] chars, int pointer, String notes) {
 		PrefixTree p = new PrefixTree(chars[pointer]);
 		p.putWord(chars, notes);
@@ -76,17 +69,11 @@ public class PrefixTree {
 		t.children.add(p);
 	}
 	
-	/**
-	 * 创建子节点并继续深入
-	 * @param t
-	 * @param chars
-	 * @param pointer
-	 */
 	private void makeChildAndAdd(PrefixTree t, char[] chars, int pointer, String notes) {
-		PrefixTree p = new PrefixTree(chars[pointer++]);
+		PrefixTree p = new PrefixTree(chars[pointer]);
 		if(t.children == null) t.children = new ArraySet<>(13);
 		t.children.add(p);
-		p.addIfNotExisits(p, chars, pointer, notes);
+		p.addIfNotExisits(p, chars, pointer++, notes);
 	}
 
 	

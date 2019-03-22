@@ -7,28 +7,21 @@ public class TestTree {
 	public static void main(String[] args) {
 		Dictionary dic = Dictionary.getInstance();
 		
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
-		dic.add("confirm", "х╥хо");
+//		dic.add("confirm", "Г║╝Х╝╓");
+//		dic.add("darling", "Д╨╡Г┬╠Г └");
+//		dic.add("dear", "Д╨╡Г┬╠Г └");
+//		dic.add("lief", "Д╨╡Г┬╠Г └");
+//		dic.add("loving", "Д╨╡Г┬╠Г └");
+		dic.add("toots", "Д╨╡Г┬╠Г └");
+//		dic.add("tootsie", "Д╨╡Г┬╠Г └");
+		dic.add("tootsy", "Д╨╡Г┬╠Г └2");
+		dic.add("tootsir", "Д╨╡Г┬╠Г └3");
+		dic.add("tootsas", "Д╨╡Г┬╠Г └4");
 		
-		
-		System.out.println(1);
-		System.out.println(dic.search("confirm"));
+		System.out.println(dic.search("tootsir"));
+		System.out.println(dic.search("tootsas"));
+		System.out.println(dic.search("toots"));
+		System.out.println(dic.search("tootsy"));
 	}
+	
 }
