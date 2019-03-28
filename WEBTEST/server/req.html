@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>test</title>
+<script type="text/javascript">
+    var result;
+    function getData(callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {//服务器返回值的处理函数，此处使用匿名函数进行实现
+            if (xhr.readyState == 4 && xhr.status == 200) {//
+                callback(xhr.responseText);
+                //document.getElementById('targetlist').innerHTML = responseText;
+            }
+        };
+        xhr.open("POST", "http://127.0.0.1:8000/getData", true);//提交get请求到服务器
+        xhr.send(null)
+    }
+    getData(function(param){
+        param = JSON.parse(param)
+        var table = document.getElementById("mainTable");
+        let first = true;
+        for(let i = 0; i < param.length; i++) {
+            let d = param[i];
+            let tr = document.createElement("tr"), th;
+            if(first)  th = document.createElement("tr")
+            for(k in d) {
+                if(first) {
+                    let td = document.createElement("td");
+                    td.innerHTML = k;
+                    th.appendChild(td);
+                }
+                let td = document.createElement("td");
+                td.innerHTML = d[k];
+                tr.appendChild(td);
+            }
+            if(first) table.appendChild(th);
+            table.appendChild(tr);
+            first = false;
+        }
+    })
+</script>
+</head>
+<body>
+	<table id="mainTable" border="1" cellspacing="0">
+    </table>
+</body>
+</html>

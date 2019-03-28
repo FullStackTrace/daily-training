@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>test</title>
+<script type="text/javascript">
+const routerArr = [
+  // 系统管理
+  {
+    path: '/sys',
+    name: 'sys',
+    // component: Main,
+    meta: {
+      icon: 'settings',
+      title: '系统管理'
+    },
+    children: [
+      {
+        path: 'version',
+        name: 'version',
+        meta: {
+          icon: 'iphone',
+          title: '版本管理'
+        },
+        pageUrl: '_@v/single-page/system/version/version.vue'
+        // component: () => import('_@v/single-page/system/version/version.vue')
+      }, 
+      {
+        path: 'notice',
+        name: 'notice',
+        meta: {
+          icon: 'chatbubbles',
+          title: '近期公告'
+        },
+        pageUrl: '_@v/single-page/system/notice/notice.vue'
+        // component: () => import('_@v/single-page/system/notice/notice.vue')
+      },
+      {
+        path: 'menus',
+        name: 'menus',
+        meta: {
+          icon: 'android-options',
+          title: '菜单管理'
+        },
+        pageUrl: '_@v/single-page/system/menus/manger-menus.vue'
+        // component: () => import('_@v/single-page/system/menus/manger-menus.vue')
+      },
+      {
+        path: 'users',
+        name: 'users',
+        meta: {
+          icon: 'person',
+          title: '用户管理'
+        },
+        pageUrl: '_@v/single-page/system/users/manger-users.vue'
+        // component: () => import('_@v/single-page/system/users/manger-users.vue')
+      },
+      {
+        path: 'roles',
+        name: 'roles',
+        meta: {
+          icon: 'eye',
+          title: '角色管理'
+        },
+        pageUrl: '_@v/single-page/system/roles/manger-roles.vue'
+        // component: () => import('_@v/single-page/system/roles/manger-roles.vue')
+      },
+      {
+        path: 'departs',
+        name: 'departs',
+        meta: {
+          icon: 'ios-home',
+          title: '单位管理'
+        },
+        pageUrl: '_@v/single-page/system/departs/manger-departs.vue'
+        // component: () => import('_@v/single-page/system/departs/manger-departs.vue')
+      },
+      {
+        path: 'organization',
+        name: 'organization',
+        meta: {
+          icon: 'android-bookmark',
+          title: '组织机构'
+        },
+        pageUrl: '_@v/single-page/system/organization/organization.vue'
+        // component: () => import('_@v/single-page/system/organization/organization.vue')
+      },
+      {
+        path: 'logs',
+        name: 'logs',
+        meta: {
+          icon: 'clipboard',
+          title: '系统日志'
+        },
+		pageUrl: '_@v/single-page/system/logs/manger-logs.vue',
+		children: [
+			{
+				path: 'logs_1',
+				name: 'logs_1',
+				meta: {
+					icon: 'clipboard',
+					title: '系统日志_1'
+				},
+				pageUrl: '_@v/single-page/system/logs/manger-logs.vue',
+			}
+		]
+      },
+    ]
+  },
+];
+
+function generateRoutesFromMenu (menu = [], routes = [], level, m) {
+  if(!level) {
+    level = 1;
+  }
+  for (let i = 0, l = menu.length; i < l; i++) {
+	let item = menu[i]
+	m = {
+          path: item.path,
+		  name: item.name,
+		  meta: {
+            icon: item.icon,
+            title: item.name
+          },
+		};
+    if (item.children) {
+		m.children = [];
+      if(level == 1) {
+		m.component='Main';
+		generateRoutesFromMenu(item.children, m.children, level++, m)
+      }else{
+		m.component='parentView';
+		generateRoutesFromMenu(item.children, m.children, level++, m)
+      }
+    } else {
+      if(level == 1) {
+		m.component='Main';
+      } else {
+		m.component=item.pageUrl
+      }
+	  level = 0;
+	  if(m.children) {
+		  m.children.push(r);
+	  }
+	}
+    routes.push(m);
+  }
+}
+var routs = [];
+
+generateRoutesFromMenu(routerArr, routs)
+console.log(routs);
+</script>
+</head>
+<body>
+</body>
+</html>

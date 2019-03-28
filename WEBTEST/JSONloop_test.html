@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>test</title>
+<script src="./jquery-3.3.1.min.js"></script>
+<script src="./data.js"></script>
+<script type="text/javascript">
+	 $(function() {
+		 var d = data.datas[10].children;
+		 console.log(d);
+		 for(i = 0; i < d.length; i++) {
+			 console.log(d[i])
+		 }
+	 })
+</script>
+</head>
+<body>
+	<select id="sheng" style="width: 300px"></select>
+	<select id="shi" style="width: 300px"></select>
+	<select id="xian" style="width: 300px"></select>
+</body>
+</html>

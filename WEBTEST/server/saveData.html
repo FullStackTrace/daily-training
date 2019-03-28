@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>test</title>
+</head>
+<body>
+	<form id="form">
+        <input name="name"/>
+        <input name="age"/>
+        <select name="sex">
+            <option value="1">男</option>
+            <option value="0">女</option>
+        </select>
+    </form>
+    <button onclick="submitData()">保存</button>
+</body>
+<script type="text/javascript">
+    function submitData() {
+        console.log("aaa")
+        let inputs = document.getElementById("form").children;
+        let data = {};
+        for(let i = 0; i < inputs.length; i++) {
+            data[inputs[i].name] = inputs[i].value;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {//服务器返回值的处理函数，此处使用匿名函数进行实现
+            if (xhr.readyState == 4 && xhr.status == 200) {//
+                console.log(xhr.responseText)
+                alert(xhr.responseText)
+            }
+        };
+        xhr.open("POST", "http://127.0.0.1:8000/saveData", true);//提交get请求到服务器
+        //xhr.setRequestHeader("Content-type","application/json");
+        xhr.send(JSON.stringify(data))
+    }
+</script>
+</html>

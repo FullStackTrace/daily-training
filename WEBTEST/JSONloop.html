@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>test</title>
+<script src="./jquery-3.3.1.min.js"></script>
+<script src="./data.js"></script>
+<script type="text/javascript">
+	 $(function() {
+		var sheng = data.datas;//省
+		var shi,xian;
+		var shengSel = $("#sheng");
+		var shiSel = $("#shi");
+		var xianSel = $("#xian");
+		shengSel.on("change",function(e) {
+			shengSelect(e);
+		})
+
+		shiSel.on("change", function(e) {
+			shiSelect(e);
+		})
+
+		for(i =0; i < sheng.length; i++) {
+			shengSel.append("<option data-code='"+sheng[i].code+"' value='"+i+"'>"+sheng[i].name+"</option>");
+		}
+
+		function shengSelect(e) {
+			var obj = e.target ? e.target : e.srcElement;
+			shi = sheng[$(obj).val()].children;
+			if(!shi) {
+				shi = [];
+			}
+			console.log(shi)
+			shiSel.empty();
+			for(i = 0; i < shi.length; i++) {
+				shiSel.append("<option data-code='"+shi[i].code+"' value='"+i+"'>"+shi[i].name+"</option>")
+			}
+			refreshXian();
+		}
+
+		function shiSelect(e) {
+			var obj = e.target ? e.target : e.srcElement;
+			xian = shi[$(obj).val()].children;
+			console.log($(obj).text(),"县",xian)
+			xianSel.empty();
+			for(i = 0; i < xian.length; i++) {
+				xianSel.append("<option data-code='"+xian[i].code+"' value='"+i+"'>"+xian[i].name+"</option>")
+			}
+		}
+		
+		function refreshXian() {
+			xian = shi[0].children;
+			xianSel.empty();
+			for(i = 0; i < xian.length; i++) {
+				xianSel.append("<option data-code='"+xian[i].code+"' value='"+i+"'>"+xian[i].name+"</option>")
+			}
+		}
+	 }) 
+</script>
+</head>
+<body>
+	<select id="sheng" style="width: 300px"></select>
+	<select id="shi" style="width: 300px"></select>
+	<select id="xian" style="width: 300px"></select>
+</body>
+</html>

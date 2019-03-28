@@ -1,0 +1,41 @@
+﻿ul{
+	list-style-type:none;
+}
+*{
+	padding:0px;
+	margin:0px;
+	font-family:"Microsoft YaHei";
+}
+body{
+	background-color:#feeded;
+}
+a{
+	color:#fff;
+	text-decoration:none;
+}
+a:hover{
+	color:#f1fb6b;
+}
+.litem {
+	width: 200px;
+	border-bottom: solid 1px #ED9F9F;
+}
+.litem >a{
+	height:30px;
+	background-color:#990920;
+	display:block;
+	line-height:30px;
+	border-left:solid 12px #711515;
+	padding:5px;
+}
+.uitem li{
+	border-bottom:solid 1px #ED9F9F;
+}
+.uitem a {
+	height: 30px; 
+	background-color: #E85070;
+	display: block;
+	line-height: 30px;
+	border-left: solid 35px #A71F1F;
+	padding: 5px;
+} 
